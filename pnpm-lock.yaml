@@ -53,9 +53,6 @@ dependencies:
   '@capacitor/status-bar':
     specifier: 5.0.7
     version: 5.0.7(@capacitor/core@5.7.0)
-  '@debonil/ionic-stepper':
-    specifier: ^1.0.0
-    version: 1.0.0
   '@ionic/angular':
     specifier: ^7.5.0
     version: 7.7.2(@angular/core@17.2.1)(@angular/forms@17.2.1)(@angular/router@17.2.1)(rxjs@7.8.1)(zone.js@0.14.4)
@@ -65,9 +62,6 @@ dependencies:
   rxjs:
     specifier: ~7.8.0
     version: 7.8.1
-  state-stepper:
-    specifier: ^2.0.4
-    version: 2.0.4
   tslib:
     specifier: ^2.3.0
     version: 2.6.2
@@ -1929,10 +1923,6 @@ packages:
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
     dev: true
-
-  /@debonil/ionic-stepper@1.0.0:
-    resolution: {integrity: sha512-DcUJ/qgUqqQeIUhMbnwGklBM9r0T9gor4vnbt8kIQSUCf65EaKNWS4loEUqNEJH6uR644wSsUm5pcDwLM7zRkA==}
-    dev: false
 
   /@discoveryjs/json-ext@0.5.7:
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
@@ -8735,10 +8725,6 @@ packages:
     dependencies:
       minipass: 7.0.4
     dev: true
-
-  /state-stepper@2.0.4:
-    resolution: {integrity: sha512-KOVknTvLAte7aEtPnMaD7qIdS3tKb69dwwUUtmQU7/HgAkqc4eIIr8q9TSypy3C7e/RIHVOPGwANOPJlGYYZQQ==}
-    dev: false
 
   /statuses@1.5.0:
     resolution: {integrity: sha512-OpZ3zP+jT1PI7I8nemJX4AKmAX070ZkYPVWV/AaKTJl+tXCTGyVdC1a4SL8RUQYEwk/f34ZX8UTykN68FwrqAA==}

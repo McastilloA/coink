@@ -3,24 +3,58 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
+import { FirstFormComponent } from './components/first-form/first-form.component';
+import { SecondFormComponent } from './components/second-form/second-form.component';
+import { FinishFormComponent } from './components/finish-form/finish-form.component';
+import { ListForms } from '@core/interceptors/listForms';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   standalone: true,
   imports: [
-    RouterModule, IonicModule, CommonModule, FormsModule
+    RouterModule, IonicModule, CommonModule, FormsModule,
+    FirstFormComponent, SecondFormComponent, FinishFormComponent
   ],
   styleUrls: ['./register.page.scss']
 })
 export class RegisterPage implements OnInit {
 
   /** Variables globales */
-  title = 'Número celular';
+  infoForms!: ListForms;
   @ViewChild('stepper1') stepper!: ElementRef;
   currentStep = 1;
 
-  ngOnInit() { }
+  listForm = [
+    {
+      id: 1,
+      header: 'Número celular',
+      title: null,
+      description: 'Para comenzar, por favor ingresa tu número celular.',
+      class: 'editing',
+      image: 'assets/img/coink-no-text.svg'
+    },
+    {
+      id: 2,
+      header: 'Datos de cuenta',
+      title: '¿Cuáles son tus datos?',
+      description: 'Ahora necesitamos saber algunos datos tuyos',
+      class: null,
+      image: 'assets/img/Oink-M.svg'
+    },
+    {
+      id: 3,
+      header: 'Finalizar',
+      title: 'ESTAS MUY CERCA DE SER PARTE DE COINK.',
+      description: 'Solo es necesario que leas detenidamente el contrato que se encuentra al final de esta pantalla y lo aceptes.',
+      class: null,
+      image: 'assets/img/OinkPolicia.svg'
+    }
+  ];
+
+  ngOnInit() {
+    this.infoForms = this.listForm[0];
+  }
 
   nextStep() {
     this.currentStep++;
@@ -33,7 +67,7 @@ export class RegisterPage implements OnInit {
       let stepNum = index + 1;
       if (stepNum === this.currentStep) {
         this.addClass(step, 'editing');
-        this.addNewTitle(this.currentStep);
+        this.addNewInfo(this.currentStep);
       } else {
         this.removeClass(step, 'editing');
       }
@@ -43,22 +77,6 @@ export class RegisterPage implements OnInit {
   addClass(elem: any, className: string) {
     if (!this.hasClass(elem, className)) {
       elem.className += ' ' + className;
-      console.log('Here', elem.className);
-    }
-  }
-
-  addNewTitle(elem: number) {
-    switch (elem) {
-      case 2:
-        this.title = 'Datos de cuenta'
-        break;
-      case 3:
-        this.title = 'Finalizar'
-        break;
-
-      default:
-        this.title = 'Número celular'
-        break;
     }
   }
 
@@ -72,8 +90,17 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  addNewInfo(item: number) {
+    this.infoForms = this.listForm.filter(element => element.id === item)[0];
+  }
+
   hasClass(elem: any, className: string) {
     return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
+  }
+
+  eventForm(evt: any) {
+    this.nextStep();
+    console.log('Here', evt);
   }
 
 }

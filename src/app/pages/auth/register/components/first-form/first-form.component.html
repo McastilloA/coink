@@ -1,0 +1,21 @@
+<form [formGroup]="this.ionicForm" (ngSubmit)="submitForm()" novalidate>
+  <ion-input aria-label="mobile" formControlName="mobile" type="number" placeholder="( X X X - X X X X X X )"
+    class="custom">
+  </ion-input>
+
+  <div *ngIf="ionicForm.controls?.['mobile']?.touched && ionicForm.controls?.['mobile']?.invalid">
+    <div class="error" *ngIf="ionicForm.controls?.['mobile']?.errors?.['required']">
+      <ion-text color="danger">Número de celular obligatorio.</ion-text>
+    </div>
+    <div class="error" *ngIf="ionicForm.controls?.['mobile']?.errors?.['pattern']">
+      <ion-text color="danger">Sólo se admiten valores numéricos.</ion-text>
+    </div>
+  </div>
+  <ion-row>
+    <ion-col class="button-phone">
+      <ion-button type="submit" color="primary" expand="block" shape="round">
+        Siguiente
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</form>

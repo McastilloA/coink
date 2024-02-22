@@ -5,8 +5,11 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o",
-    "build": "ng build",
+    "dev": "ionic serve -l",
+    "dev:build": "ionic cap sync",
+    "dev:update": "ionic cap update",
+    "dev:android": "ionic cap open android",
+    "dev:ios": "ionic cap open ios",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"

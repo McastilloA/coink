@@ -1,27 +1,72 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ion-text-center">
     <ion-text color="secondary">
-      <h2 class="ion-text-uppercase">{{title}}</h2>
+      <h2 class="ion-text-uppercase">{{infoForms.header}}</h2>
     </ion-text>
 
     <div class="stepper-horizontal" #stepper1>
-      <div class="step editing">
+      @for (item of listForm; track item; let i = $index) {
+      <div class="step {{item.class}}">
         <div class="step-circle"></div>
         <div class="step-bar-left"></div>
       </div>
-      <div class="step">
-        <div class="step-circle"></div>
-        <div class="step-bar-left"></div>
-      </div>
-      <div class="step">
-        <div class="step-circle"></div>
-      </div>
+      }
     </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding" class="ion-text-center">
-  <ion-button (click)="nextStep()" expand="block" fill="clear" shape="round">
-    Next form
-  </ion-button>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div id="container-form">
+    <ion-grid class="form-grid">
+      <ion-row class="ion-align-items-center border-bottom">
+
+        <ion-col size="4" class="ion-text-center ion-padding">
+          <picture>
+            <img [src]="infoForms.image" alt="imagen_logo_coink" class="image-logo">
+          </picture>
+        </ion-col>
+
+        <ion-col size="8" class="ion-text-left ion-padding">
+
+          @if (infoForms.title) {
+            <ion-text color="secondary" class="ion-text-uppercase">
+              <strong>
+                <h6 class="ion-no-margin">{{infoForms.title}}</h6>
+              </strong>
+            </ion-text>
+          }
+
+          <p class="text-gray">
+            {{infoForms.description}}
+          </p>
+        </ion-col>
+
+        <ion-col size="12" class="number-phone">
+          <div id="content-register">
+            @switch (currentStep) {
+            @case (2) {
+            <app-second-form />
+            }
+            @case (3) {
+            <app-finish-form />
+            }
+            @default {
+            <app-first-form (emitForm)="eventForm($event)"/>
+            }
+            }
+        
+          </div>
+        </ion-col>
+
+        <!-- <ion-col size="12" class="button-phone">
+          <ion-button expand="full" color="danger" shape="round" (click)="nextStep()" 
+          class="ion-text-uppercase">
+            botón de prueba
+          </ion-button>
+        </ion-col> -->
+
+      </ion-row>
+    </ion-grid>
+
+  </div>
 </ion-content>
