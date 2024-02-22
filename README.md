@@ -49,10 +49,10 @@ This project is created for a technical test and was generated with [Angular CLI
 
 ## 🚀 Getting Started
 
-1. [Fork](https://github.com/McastilloA/sportsBetting/fork) or clone this repository.
+1. [Fork](https://github.com/McastilloA/coink/fork) or clone this repository.
 
 ```bash
-git clone https://github.com/McastilloA/sportsBetting.git
+git clone https://github.com/McastilloA/coink.git
 ```
 
 2. Install the dependencies:
