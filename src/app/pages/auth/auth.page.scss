@@ -1,0 +1,22 @@
+#container {
+  height: 100%;
+
+  .auth-grid {
+    height: 100%;
+
+    ion-row {
+      height: 100%;
+    }
+  }
+
+  .image-logo {
+    display: flex;
+    margin: 40px auto;
+  }
+
+  .group-button-col {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}

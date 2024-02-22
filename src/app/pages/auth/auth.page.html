@@ -1,0 +1,29 @@
+<ion-content [fullscreen]="false" class="ion-padding">
+  <div id="container">
+
+    <ion-grid class="auth-grid ion-no-padding">
+      <ion-row class="ion-align-items-start">
+
+        <ion-col size="12" class="ion-text-center ion-padding">
+          <picture>
+            <img src="assets/img/logo-coink.svg" alt="imagen_logo_coink" class="image-logo">
+          </picture>
+          <ion-text color="primary" class="ion-text-uppercase">
+            <h5>{{description}}</h5>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size="12" class="group-button-col ion-padding">
+          <ion-button expand="full" color="primary" shape="round" [routerLink]="['register']"
+            routerLinkActive="router-link-active" class="ion-text-uppercase">
+            Regístrate
+          </ion-button>
+          <ion-button expand="full" size="default" color="secondary" shape="round" [routerLink]="['login']"
+            size="default" routerLinkActive="router-link-active" class="ion-padding-vertical ion-text-uppercase">
+            Ingresa
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

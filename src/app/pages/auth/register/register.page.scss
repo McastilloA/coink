@@ -1,0 +1,53 @@
+$fill-color: #1EEA00;
+$border-color: #D9E2EC;
+
+.stepper-horizontal {
+  display: table;
+  width: 100%;
+
+  .step {
+    display: table-cell;
+    position: relative;
+    padding: 20px 1.5rem;
+
+    &:last-child .step-bar-left {
+      display: none;
+    }
+
+    .step-circle {
+      width: 2rem;
+      height: 2rem;
+      margin: 0 auto;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 1.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      z-index: 2;
+      border: 1px solid $border-color;
+    }
+
+    &.editing {
+      .step-circle {
+        background-color: $fill-color;
+        border-color: $border-color;
+        color: $fill-color;
+      }
+
+    }
+
+    .step-bar-left {
+      position: absolute;
+      top: calc(2rem + 5px);
+      border: 1px solid $border-color;
+      border-width: 1px 0;
+    }
+
+    .step-bar-left {
+      width: calc(80% - 2rem);
+      left: 50%;
+      margin-left: 30px;
+      z-index: -1;
+    }
+  }
+}
