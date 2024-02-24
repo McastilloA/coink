@@ -124,6 +124,21 @@ Page construction **register**
 ![Image register](src/assets/resourses/register.png)
 
 
+Page construction **register in second form** 
+
+![Image register in second form](src/assets/resourses/auth-register-form2.png)
+
+
+Page construction **register in third form** 
+
+![Image register in third form](src/assets/resourses/auth-register-form3.png)
+
+
+Page construction **Message Success of form** 
+
+![Message Success of form](src/assets/resourses/success.png)
+
+
 ## 🫡 Commands
 
 |     | Command          | Action                                        |

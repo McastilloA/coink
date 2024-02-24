@@ -27,6 +27,9 @@ export class SecondFormComponent implements OnInit {
   #loaderService = inject(LoaderService);
   stateDocumuentType = signal<DocumentTypes[]>([]);
 
+  password: string = '';
+  showPassword: boolean = false;
+
   ngOnInit() {
     this.initForm();
     this.listDocumentType();
@@ -80,5 +83,9 @@ export class SecondFormComponent implements OnInit {
       console.log('Please provide all the required values!');
     }
   };
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 
 }

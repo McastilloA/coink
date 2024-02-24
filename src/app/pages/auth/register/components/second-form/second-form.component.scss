@@ -1,18 +1,20 @@
 #formSecond {
   .custon-input {
     padding: 10px 10px 0px;
+
     ion-input {
       min-height: 20px;
       color: #AAAAAA;
     }
 
-    ion-select, .input-email {
+    ion-select,
+    .input-email {
       // min-height: 50px;
       color: #AAAAAA;
       border-bottom: 1px solid #E2E2E2;
     }
   }
-  
+
 
   .title-section {
     padding: 10px 0 5px;
@@ -26,6 +28,13 @@
   ion-text.custom {
     font-size: 12px;
     padding: 0;
+  }
+
+  ion-icon {
+    position: absolute;
+    top: 75%;
+    right: 20px;
+    font-size: 25px;
   }
 
 }

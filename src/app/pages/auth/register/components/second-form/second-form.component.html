@@ -88,8 +88,10 @@
   </div>
 
   <div class="custon-input">
-    <ion-input label="PIN de seguridad" label-placement="floating" formControlName="pin" type="number" aria-label="Pin" 
-      class="input-email"></ion-input>
+    <ion-input label="PIN de seguridad" label-placement="floating" formControlName="pin" aria-label="Pin"
+      class="input-email" type="{{ showPassword ? 'number' : 'password' }}"></ion-input>
+    <ion-icon name="{{ showPassword ? 'eye-off' : 'eye' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+
     <div *ngIf="ionicForm.controls?.['pin']?.touched && ionicForm.controls?.['pin']?.invalid">
       <ion-text color="danger" class="custom" slot="error" *ngIf="ionicForm.controls?.['pin']?.errors?.['required']">
         {{errorMessage}}
@@ -101,8 +103,10 @@
   </div>
 
   <div class="custon-input">
-    <ion-input label="Confirmar PIN de seguridad" label-placement="floating" formControlName="confirmPin" type="number"
-      aria-label="Confirm Pin" class="input-email"></ion-input>
+    <ion-input label="Confirmar PIN de seguridad" label-placement="floating" formControlName="confirmPin"
+      aria-label="Confirm Pin" class="input-email" type="{{ showPassword ? 'number' : 'password' }}"></ion-input>
+    <!-- <ion-icon name="{{ showPassword ? 'eye-off' : 'eye' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon> -->
+
     <div *ngIf="ionicForm.controls?.['confirmPin']?.touched && ionicForm.controls?.['confirmPin']?.invalid">
       <ion-text color="danger" class="custom" slot="error"
         *ngIf="ionicForm.controls?.['confirmPin']?.errors?.['required']">
