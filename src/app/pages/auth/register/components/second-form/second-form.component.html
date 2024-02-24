@@ -1,3 +1,125 @@
-<p>
-  second-form works!
-</p>
+<form [formGroup]="this.ionicForm" (ngSubmit)="submitForm()" novalidate id="formSecond">
+
+  <ion-text color="secondary">
+    <strong>
+      <h6 class="title-section">Documento de identidad</h6>
+    </strong>
+  </ion-text>
+
+  <div class="custon-input">
+    <ion-select justify="space-between" label="Tipo de documento" label-placement="floating"
+      formControlName="typeDocument" aria-label="TypeDocument" interface="popover">
+      @for (item of stateDocumuentType(); track item; let index = $index) {
+      <ion-select-option [value]="item.notation">
+        {{item.description}}
+      </ion-select-option>
+      }
+    </ion-select>
+    <div *ngIf="ionicForm.controls?.['typeDocument']?.touched && ionicForm.controls?.['typeDocument']?.invalid">
+      <ion-text color="danger" class="custom" slot="error"
+        *ngIf="ionicForm.controls?.['typeDocument']?.errors?.['required']">
+        {{errorMessage}}
+      </ion-text>
+    </div>
+  </div>
+
+  <div class="custon-input">
+    <ion-input label="Número de documento" label-placement="floating" formControlName="document" type="text"
+      aria-label="Document" clearInput="true" [errorText]="errorMessage"></ion-input>
+  </div>
+
+  <div class="custon-input">
+    <ion-input label="Fecha de expedición del documento" label-placement="floating" formControlName="dateIssue"
+      type="date" aria-label="DateIssue" clearInput="true" [errorText]="errorMessage"></ion-input>
+  </div>
+
+  <div class="custon-input">
+    <ion-input label="Fecha de nacimiento" label-placement="floating" formControlName="dateBirth" type="date"
+      aria-label="DateBirth" clearInput="true" [errorText]="errorMessage"></ion-input>
+  </div>
+
+  <div class="custon-input">
+    <ion-select justify="space-between" label="Genero" label-placement="floating" formControlName="genre"
+      aria-label="Genre" interface="popover">
+      <ion-select-option value="M">Masculino</ion-select-option>
+      <ion-select-option value="F">Femenino</ion-select-option>
+    </ion-select>
+    <div *ngIf="ionicForm.controls?.['genre']?.touched && ionicForm.controls?.['genre']?.invalid">
+      <ion-text color="danger" class="custom" slot="error" *ngIf="ionicForm.controls?.['genre']?.errors?.['required']">
+        {{errorMessage}}
+      </ion-text>
+    </div>
+  </div>
+
+
+  <ion-text color="secondary">
+    <strong>
+      <h6 class="title-section">Configura tu cuenta</h6>
+    </strong>
+  </ion-text>
+
+  <div class="custon-input">
+    <ion-input label="Correo electrónico" label-placement="floating" formControlName="email" aria-label="Email"
+      type="email" clearInput="true" class="input-email"></ion-input>
+    <div *ngIf="ionicForm.controls?.['email']?.touched && ionicForm.controls?.['email']?.invalid">
+      <ion-text color="danger" class="custom" slot="error" *ngIf="ionicForm.controls?.['email']?.errors?.['required']">
+        {{errorMessage}}
+      </ion-text>
+      <ion-text color="danger" class="custom" slot="error" *ngIf="ionicForm.controls?.['email']?.errors?.['pattern']">
+        Indique una dirección de correo electrónico válida.
+      </ion-text>
+    </div>
+  </div>
+
+  <div class="custon-input">
+    <ion-input label="Confirmar correo electrónico" label-placement="floating" formControlName="confirmEmail"
+      aria-label="Confirm Email" type="email" clearInput="true" class="input-email"></ion-input>
+
+    <div *ngIf="ionicForm.controls?.['confirmEmail']?.touched && ionicForm.controls?.['confirmEmail']?.invalid">
+      <ion-text color="danger" class="custom" slot="error"
+        *ngIf="ionicForm.controls?.['confirmEmail']?.errors?.['required']">
+        {{errorMessage}}
+      </ion-text>
+      <ion-text color="danger" class="custom" slot="error"
+        *ngIf="ionicForm.controls?.['confirmEmail']?.errors?.['pattern']">
+        Este campo no coincide con el EMAIL.
+      </ion-text>
+    </div>
+  </div>
+
+  <div class="custon-input">
+    <ion-input label="PIN de seguridad" label-placement="floating" formControlName="pin" type="number" aria-label="Pin" 
+      class="input-email"></ion-input>
+    <div *ngIf="ionicForm.controls?.['pin']?.touched && ionicForm.controls?.['pin']?.invalid">
+      <ion-text color="danger" class="custom" slot="error" *ngIf="ionicForm.controls?.['pin']?.errors?.['required']">
+        {{errorMessage}}
+      </ion-text>
+      <ion-text color="danger" class="custom" slot="error" *ngIf="ionicForm.controls?.['pin']?.errors?.['pattern']">
+        Sólo se permiten valores numéricos.
+      </ion-text>
+    </div>
+  </div>
+
+  <div class="custon-input">
+    <ion-input label="Confirmar PIN de seguridad" label-placement="floating" formControlName="confirmPin" type="number"
+      aria-label="Confirm Pin" class="input-email"></ion-input>
+    <div *ngIf="ionicForm.controls?.['confirmPin']?.touched && ionicForm.controls?.['confirmPin']?.invalid">
+      <ion-text color="danger" class="custom" slot="error"
+        *ngIf="ionicForm.controls?.['confirmPin']?.errors?.['required']">
+        {{errorMessage}}
+      </ion-text>
+      <ion-text color="danger" class="custom" slot="error"
+        *ngIf="ionicForm.controls?.['confirmPin']?.errors?.['pattern']">
+        Este campo no coincide con el PIN.
+      </ion-text>
+    </div>
+  </div>
+
+  <ion-row>
+    <ion-col class="button-form">
+      <ion-button type="submit" color="primary" expand="block" shape="round" class="ion-text-uppercase">
+        Siguiente
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</form>

@@ -1,0 +1,53 @@
+ion-text.custom {
+  font-size: 14x;
+  padding: 0;
+  color: #323232;
+
+  p {
+    margin-top: 0;
+  }
+}
+
+ion-text {
+  a {
+    color: #004B40;
+  }
+}
+
+ion-checkbox {
+  color: #004B40;
+  padding: 16px 0 40px;
+}
+
+.form-grid {
+
+  .form-row {
+    height: 100%;
+
+    h4 {
+      margin: 0;
+    }
+
+    h6 {
+      margin-bottom: 0;
+    }
+
+    img {
+      display: flex;
+      margin: auto;
+    }
+
+  }
+}
+
+ion-modal#example-modal {
+  --width: 65%;
+  --min-width: 200px;
+  --height: 40%;
+  --border-radius: 6px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}
+
+ion-modal#example-modal .wrapper {
+  margin-bottom: 10px;
+}

@@ -27,11 +27,11 @@ export class FirstFormComponent implements OnInit {
     });
   }
 
-  submitForm = () => {
+  submitForm() {
     if (this.ionicForm.valid) {
       this.emitForm.emit(this.ionicForm.value);
     } else {
-      return console.log('Please provide all the required values!');
+      console.log('Please provide all the required values!');
     }
   };
 

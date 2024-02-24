@@ -1,3 +1,97 @@
-<p>
-  finish-form works!
-</p>
+<form [formGroup]="ionicForm" novalidate>
+
+  <ion-grid class="form-grid">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12">
+        <ion-text color="secondary" class="ion-text-uppercase">
+          <strong>
+            <h6>Lo más importante</h6>
+          </strong>
+        </ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary" class="custom">
+          <p>
+            Para la apertura del Depósito de Bajo Monto en COINK debes ser una persona natural que de acuerdo con
+            nuestra legislación vigente te encuentres en plena capacidad para adquirir derechos y contraer obligaciones.
+          </p>
+
+          <p>
+            Abrirás una cuenta COINK de Bajo Monto la cual te permitirá tener un saldo hasta por 8 salarios mínimos en
+            el mes y realizar débitos por el mismo valor. Si deseas sobrepasar estos límites debes solicitarnos la
+            apertura
+            de un Depósito Ordinario COINK Persona Natural.
+          </p>
+
+          <p>
+            Solo puedes tener una cuenta COINK de Bajo Monto y podrás utilizar tu dispositivo móvil para consultar tu
+            saldo, tus movimientos, realizar tus transacciones y administrar tu cuenta.
+          </p>
+          <p>
+            Recuerda que no necesitas saldo mínimo ni monto inicial para su apertura.
+          </p>
+        </ion-text>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-text color="secondary">
+          <a href="https://coink.com/wp-content/uploads/2023/04/Terminos-y-condiciones-de-tarjetas-Visa-Coink-1.pdf"
+            color="primary" target="_blank">
+            Lee tu contrato
+          </a>
+        </ion-text>
+
+        <ion-checkbox labelPlacement="end" color="primary" formControlName="readContract">
+          He leído ya acepto el contrato
+        </ion-checkbox>
+      </ion-col>
+
+      <ion-col size="12" class="btn-accept">
+        <ion-button type="button" color="primary" expand="block" shape="round" class="ion-text-uppercase" size="large"
+          (click)="activateModal()">
+          Aceptar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</form>
+
+<ion-modal id="example-modal" [isOpen]="isModalOpen">
+  <ng-template>
+    <ion-grid class="form-grid ion-no-padding">
+      <ion-row class="ion-align-items-center ion-padding form-row">
+        <ion-col size="12" class="ion-margin-auto">
+          <ion-text color="secondary" class="ion-text-uppercase">
+            <picture>
+              <img src="assets/img/marrano_regalo.svg" alt="imagen_logo_coink" class="image-logo">
+            </picture>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-text color="secondary" class="ion-text-center">
+            <strong>
+              <h4>¡Bienvenido a Coink!</h4>
+            </strong>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-text color="secondary" class="custom ion-text-center">
+            <p>¡Cuenta creada exitosamente, tu marrano ya está listo para que empieces a ahorrar!</p>
+          </ion-text>
+        </ion-col>
+
+        <ion-col size="12" class="btn-accept">
+          <ion-button type="submit" color="primary" expand="block" shape="round" class="ion-text-uppercase"
+            (click)="submitForm()">
+            Continuar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
+</ion-modal>
+
+<ion-toast [isOpen]="isToastOpen" [message]="errorMessage" position="top" [duration]="5000"></ion-toast>

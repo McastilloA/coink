@@ -1,6 +1,6 @@
-<form [formGroup]="this.ionicForm" (ngSubmit)="submitForm()" novalidate>
+<form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
   <ion-input aria-label="mobile" formControlName="mobile" type="number" placeholder="( X X X - X X X X X X )"
-    class="custom">
+    class="custom" clearInput="true">
   </ion-input>
 
   <div *ngIf="ionicForm.controls?.['mobile']?.touched && ionicForm.controls?.['mobile']?.invalid">
@@ -13,7 +13,7 @@
   </div>
   <ion-row>
     <ion-col class="button-phone">
-      <ion-button type="submit" color="primary" expand="block" shape="round">
+      <ion-button type="submit" color="primary" expand="block" shape="round" class="ion-text-uppercase" size="large">
         Siguiente
       </ion-button>
     </ion-col>

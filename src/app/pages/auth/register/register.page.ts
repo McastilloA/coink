@@ -1,12 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { FirstFormComponent } from './components/first-form/first-form.component';
 import { SecondFormComponent } from './components/second-form/second-form.component';
 import { FinishFormComponent } from './components/finish-form/finish-form.component';
-import { ListForms } from '@core/interceptors/listForms';
+import { ListForms } from '@core/interfaces/listForms';
 
 @Component({
   selector: 'app-register',
@@ -21,10 +21,6 @@ import { ListForms } from '@core/interceptors/listForms';
 export class RegisterPage implements OnInit {
 
   /** Variables globales */
-  infoForms!: ListForms;
-  @ViewChild('stepper1') stepper!: ElementRef;
-  currentStep = 1;
-
   listForm = [
     {
       id: 1,
@@ -32,7 +28,8 @@ export class RegisterPage implements OnInit {
       title: null,
       description: 'Para comenzar, por favor ingresa tu número celular.',
       class: 'editing',
-      image: 'assets/img/coink-no-text.svg'
+      image: 'assets/img/Oink-M.svg',
+      stateStepper: true
     },
     {
       id: 2,
@@ -40,7 +37,8 @@ export class RegisterPage implements OnInit {
       title: '¿Cuáles son tus datos?',
       description: 'Ahora necesitamos saber algunos datos tuyos',
       class: null,
-      image: 'assets/img/Oink-M.svg'
+      image: 'assets/img/Oink-M.svg',
+      stateStepper: false
     },
     {
       id: 3,
@@ -48,30 +46,64 @@ export class RegisterPage implements OnInit {
       title: 'ESTAS MUY CERCA DE SER PARTE DE COINK.',
       description: 'Solo es necesario que leas detenidamente el contrato que se encuentra al final de esta pantalla y lo aceptes.',
       class: null,
-      image: 'assets/img/OinkPolicia.svg'
+      image: 'assets/img/OinkPolicia.svg',
+      stateStepper: false
     }
   ];
+  infoForms!: ListForms;
+  formBuilder = inject(FormBuilder);
+  @ViewChild('stepper') stepper!: ElementRef;
+  ionicForm!: FormGroup;
 
-  ngOnInit() {
-    this.infoForms = this.listForm[0];
+  ngOnInit(): void {
+    this.infoForms = this.listForm.filter(resp => resp.stateStepper)[0];
+    this.initForm();
+    setTimeout(() => {
+      this.nextStep(this.infoForms.id);
+    }, 0);
   }
 
-  nextStep() {
-    this.currentStep++;
+  initForm() {
+    this.ionicForm = this.formBuilder.group({
+      mobile: [null, [Validators.required, Validators.pattern('^[0-9]+$')]],
+      typeDocument: [null, [Validators.required]],
+      document: [null, [Validators.required]],
+      dateIssue: [null, [Validators.required]],
+      dateBirth: [null, [Validators.required]],
+      genre: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
+      confirmEmail: [null, [Validators.required]],
+      pin: [null, [Validators.required, Validators.pattern('^[0-9]+$')]],
+      confirmPin: [null, [Validators.required]],
+      readContract: [null, [Validators.required]]
+    });
+  }
 
-    if (this.currentStep > this.stepper.nativeElement.children.length) {
-      this.currentStep = 1;
-    }
+  nextStep(idStepper: number) {
+    const totalSteps = this.stepper.nativeElement.children;
+    idStepper = (idStepper > totalSteps.length) ? 1 : idStepper;
 
-    Array.from(this.stepper.nativeElement.children).forEach((step, index) => {
+    Array.from(totalSteps).forEach((step, index) => {
       let stepNum = index + 1;
-      if (stepNum === this.currentStep) {
-        this.addClass(step, 'editing');
-        this.addNewInfo(this.currentStep);
-      } else {
-        this.removeClass(step, 'editing');
+      const isCurrentStep = stepNum === idStepper;
+      this.toggleClass(step, 'editing', isCurrentStep);
+
+      if (isCurrentStep) {
+        this.addInformation(idStepper);
       }
     })
+  }
+
+  addInformation(item: number) {
+    this.infoForms = this.listForm.filter(element => element.id === item)[0];
+  }
+
+  toggleClass(element: any, className: string, condition: boolean) {
+    if (condition) {
+      this.addClass(element, className);
+    } else {
+      this.removeClass(element, className);
+    }
   }
 
   addClass(elem: any, className: string) {
@@ -90,17 +122,14 @@ export class RegisterPage implements OnInit {
     }
   }
 
-  addNewInfo(item: number) {
-    this.infoForms = this.listForm.filter(element => element.id === item)[0];
-  }
-
   hasClass(elem: any, className: string) {
     return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
   }
 
-  eventForm(evt: any) {
-    this.nextStep();
-    console.log('Here', evt);
+  onChangeForm(objectForm: any) {
+    this.ionicForm.patchValue(objectForm)
+    this.nextStep(this.infoForms.id + 1);
+    console.log('Objecto solicitado en la prueba!', this.ionicForm.value);
   }
 
 }

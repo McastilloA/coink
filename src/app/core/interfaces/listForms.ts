@@ -5,5 +5,6 @@ export interface ListForms {
   description: string;
   class: string | null;
   image: string;
+  stateStepper: boolean;
 }
 
